@@ -1,0 +1,73 @@
+{
+  "name": "ai-commit-generator",
+  "displayName": "AI Commit Generator",
+  "description": "Auto-generate commit messages from staged diffs using any OpenAI-compatible LLM",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-commit.generateCommitMessage",
+        "title": "AI Commit Generator: Stage All & Generate Message",
+        "icon": "$(sparkle)"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "ai-commit.generateCommitMessage",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI Commit",
+      "properties": {
+        "aiCommit.apiBaseUrl": {
+          "type": "string",
+          "default": "https://api.openai.com/v1",
+          "description": "Base URL of the OpenAI-compatible API endpoint (e.g. https://api.deepseek.com/v1, https://api.anthropic.com/v1)"
+        },
+        "aiCommit.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your API key for the configured endpoint"
+        },
+        "aiCommit.model": {
+          "type": "string",
+          "default": "gpt-4o",
+          "description": "Model name to use (e.g. deepseek-chat, claude-opus-4-6, gpt-4o)"
+        },
+        "aiCommit.systemPrompt": {
+          "type": "string",
+          "default": "You are a commit message generator. Given a git diff, produce a concise, conventional commit message.\n\nFormat:\n<type>(<scope>): <short summary>\n\nTypes: feat, fix, refactor, chore, docs, style, test\n\nRules:\n- Summary under 72 characters\n- Use imperative mood (\"add\" not \"added\")\n- No period at the end\n- Output ONLY the commit message, nothing else",
+          "description": "System prompt sent to the LLM. Customize this to match your commit message format.",
+          "editPresentation": "multilineText"
+        },
+        "aiCommit.maxDiffLines": {
+          "type": "number",
+          "default": 500,
+          "description": "Truncate the diff to this many lines before sending (prevents token overflows)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "bun run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}

@@ -10,6 +10,10 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/humaid24/ai-commit"
+  },
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {

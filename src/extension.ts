@@ -23,7 +23,8 @@ function getWorkspaceRoot(): string | null {
 }
 
 function runGit(cwd: string, args: string): string {
-  return execSync(`git ${args}`, { cwd, encoding: "utf8" });
+  const gitPath = vscode.workspace.getConfiguration("aiCommit").get<string>("gitPath", "git");
+  return execSync(`"${gitPath}" ${args}`, { cwd, encoding: "utf8" });
 }
 
 function truncateDiff(diff: string, maxLines: number): string {

@@ -1,8 +1,8 @@
 {
-  "name": "ai-commit-message",
-  "displayName": "AI Commit Generator",
+  "name": "ai-commit-generator-humaid",
+  "displayName": "AI Commit Message Generator by Humaid",
   "description": "Auto-generate commit messages from staged diffs using any OpenAI-compatible LLM",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "humaid-abuzinjal",
   "engines": {
     "vscode": "^1.85.0"
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/humaid24/ai-commit"
+    "url": "https://github.com/humaid24/ai-commit-generator"
   },
   "activationEvents": [],
   "main": "./out/extension.js",
@@ -61,6 +61,11 @@
           "type": "number",
           "default": 500,
           "description": "Truncate the diff to this many lines before sending (prevents token overflows)"
+        },
+        "aiCommit.gitPath": {
+          "type": "string",
+          "default": "git",
+          "description": "Path to git executable. Change this if git is not in your PATH (e.g. C:\\Program Files\\Git\\bin\\git.exe)"
         }
       }
     }

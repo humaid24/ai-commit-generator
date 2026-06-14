@@ -1,5 +1,5 @@
 {
-  "name": "ai-commit-generator",
+  "name": "ai-commit-message",
   "displayName": "AI Commit Generator",
   "description": "Auto-generate commit messages from staged diffs using any OpenAI-compatible LLM",
   "version": "0.0.1",

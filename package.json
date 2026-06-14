@@ -3,6 +3,7 @@
   "displayName": "AI Commit Generator",
   "description": "Auto-generate commit messages from staged diffs using any OpenAI-compatible LLM",
   "version": "0.0.1",
+  "publisher": "humaid-abuzinjal",
   "engines": {
     "vscode": "^1.85.0"
   },
